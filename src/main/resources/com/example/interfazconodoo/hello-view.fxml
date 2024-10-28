@@ -11,25 +11,29 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazconodoo.Controladores.HelloController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazconodoo.Controladores.HelloController">
   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="396.0" minWidth="10.0" prefWidth="360.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="394.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="412.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="342.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="71.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="343.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="68.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="343.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="390.0" minHeight="10.0" prefHeight="390.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="140.0" minHeight="5.0" prefHeight="11.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label prefHeight="17.0" prefWidth="72.0" text="PaperFormat">
+      <Label prefHeight="35.0" prefWidth="181.0" text="PaperFormat">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
+         <font>
+            <Font size="24.0" />
+         </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="82.0" prefWidth="336.0" GridPane.rowIndex="1">
+      <HBox alignment="CENTER_LEFT" prefHeight="113.0" prefWidth="423.0" GridPane.rowIndex="1">
          <children>
             <ChoiceBox fx:id="select" prefHeight="25.0" prefWidth="112.0">
                <HBox.margin>
@@ -41,17 +45,17 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Search">
+            <Button mnemonicParsing="false" onAction="#onbBtnSearchMal" prefHeight="25.0" prefWidth="52.0" text="Search">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Search" />
+            <Button mnemonicParsing="false" onAction="#onbBtnSearchBien" text="Search" />
          </children>
       </HBox>
-      <TableView prefHeight="223.0" prefWidth="519.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <TableView fx:id="tbDatos" prefHeight="223.0" prefWidth="519.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
         <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="flName" prefWidth="75.0" text="Name" />
           <TableColumn prefWidth="79.0" text="Format" />
             <TableColumn prefWidth="71.0" text="Orentation" />
             <TableColumn prefWidth="83.0" text="Margin Top" />
@@ -66,24 +70,19 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <children>
-            <Button mnemonicParsing="false" text="View Date">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Update" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Create" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Update">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Create">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Delete">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
