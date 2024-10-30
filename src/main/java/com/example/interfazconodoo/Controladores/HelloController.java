@@ -23,13 +23,28 @@ public class HelloController {
     @FXML
     private TableColumn flName;
     @FXML
-    private Button buscarMal;
+    private TableColumn flFormat;
     @FXML
-    private Button buscarBien;
+    private TableColumn flMarginLeft;
+    @FXML
+    private TableColumn flMarginRight;
+    @FXML
+    private TableColumn flMarginTop;
+    @FXML
+    private TableColumn flOrientation;
+    @FXML
+    private TableColumn flMarginButton;
 
     public void initialize() {
         select.getItems().addAll("Name", "Format", "Orientation");
         flName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        flFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
+        flOrientation.setCellValueFactory(new PropertyValueFactory<>("orientation"));
+        flMarginTop.setCellValueFactory(new PropertyValueFactory<>("margin_top"));
+        flMarginButton.setCellValueFactory(new PropertyValueFactory<>("margin_button"));
+        flMarginRight.setCellValueFactory(new PropertyValueFactory<>("margin_right"));
+        flMarginLeft.setCellValueFactory(new PropertyValueFactory<>("margin_left"));
+
     }
 
     @FXML

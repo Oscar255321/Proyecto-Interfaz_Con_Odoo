@@ -1,0 +1,18 @@
+
+.button{
+
+    -fx-background-radius: 10px;
+    -fx-pref-width: 50px;         /* Ancho del boton*/
+    -fx-pref-height: 50px;        /*Alto del boton*/
+    -fx-font-family: Arial;       /*Tipo de letra*/
+    -fx-font-size: 16px;          /*Tamaño de letra*/
+    -fx-padding: 10px;
+}
+
+.label{
+
+}
+
+.GridPane{
+    -fx-background-color: #5193a3;
+}

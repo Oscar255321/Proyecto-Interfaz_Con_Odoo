@@ -21,11 +21,13 @@ public class PaperformatDAO {
             while (resultSet.next()) {
                 Paperformat formato = new Paperformat();
                 formato.setName(resultSet.getString("name"));
-                //formato.setFormat(resultSet.getString("Format"));
-                //formato.setOrientation(resultSet.getString("Orientation"));
-                //formato.setMargin_top(resultSet.getDouble("Margin Top"));
+                formato.setFormat(resultSet.getString("format"));
+                formato.setOrientation(resultSet.getString("orientation"));
+                formato.setMargin_top(resultSet.getDouble("margin_top"));
+                formato.setMargin_bottom(resultSet.getDouble("margin_bottom"));
+                formato.setMargin_left(resultSet.getDouble("margin_left"));
+                formato.setMargin_right(resultSet.getDouble("margin_right"));
                 formatos.add(formato);
-                System.out.println(resultSet.getString("name"));
             }
         }
 
