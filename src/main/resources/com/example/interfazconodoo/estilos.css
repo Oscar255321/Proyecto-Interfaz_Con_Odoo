@@ -1,18 +1,38 @@
 
 .button{
-
+    -fx-background-color: #ffffff;
     -fx-background-radius: 10px;
-    -fx-pref-width: 50px;         /* Ancho del boton*/
-    -fx-pref-height: 50px;        /*Alto del boton*/
+    -fx-pref-width: 25px;         /* Ancho del boton*/
+    -fx-pref-height: 25px;        /*Alto del boton*/
     -fx-font-family: Arial;       /*Tipo de letra*/
-    -fx-font-size: 16px;          /*Tamaño de letra*/
     -fx-padding: 10px;
 }
 
-.label{
+.label {
+
+    -fx-font-family: Arial; /*Tipo de letra*/
+    -fx-font-size: 13px; /*Tamaño de letra*/
+    -fx-font-weight: bold;
+}
+
+.labelTitulo {
+
+    -fx-font-family: Arial; /*Tipo de letra*/
+    -fx-font-size: 24px; /*Tamaño de letra*/
+    -fx-font-weight: bold;
+}
+
+.grid-pane {
+
+    -fx-background-color: #7dcde8;
+}
+
+.table-view{
+    -fx-background-radius: 10px;
 
 }
 
-.GridPane{
-    -fx-background-color: #5193a3;
+.table-column{
+
 }
+

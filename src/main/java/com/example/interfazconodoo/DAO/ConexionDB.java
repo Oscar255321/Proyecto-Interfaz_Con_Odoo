@@ -9,7 +9,7 @@ public class ConexionDB {
     public static Connection connection = null;
     public static Connection getConnection() {
 
-        String dbName = "odoo";
+        String dbName = "FutboleroShop";
         String dbPort = "5432";
         String username = "odoo";
         String password = "odoo";

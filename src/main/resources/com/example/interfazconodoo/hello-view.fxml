@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazconodoo.Controladores.HelloController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="750.0" styleClass="grid-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazconodoo.Controladores.HelloController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="412.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="342.0" />
@@ -27,7 +26,7 @@
     <RowConstraints maxHeight="140.0" minHeight="5.0" prefHeight="11.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label prefHeight="35.0" prefWidth="181.0" text="PaperFormat">
+      <Label prefHeight="35.0" prefWidth="737.0" styleClass="labelTitulo" text="Interacción con la tabla report_paperformat" GridPane.columnSpan="2">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
@@ -37,28 +36,16 @@
       </Label>
       <HBox alignment="CENTER_LEFT" prefHeight="113.0" prefWidth="423.0" GridPane.rowIndex="1">
          <children>
-            <ChoiceBox fx:id="select" prefHeight="25.0" prefWidth="112.0">
+            <Label text="Name:">
                <HBox.margin>
                   <Insets left="10.0" right="5.0" />
                </HBox.margin>
-            </ChoiceBox>
-            <TextField>
+            </Label>
+            <TextField fx:id="texto_buscar" prefHeight="26.0" prefWidth="149.0" promptText="Busca aqui...">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#onbBtnSearchMal" prefHeight="25.0" prefWidth="52.0">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-               <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Imagenes/BuscarMal.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Button mnemonicParsing="false" onAction="#onbBtnSearchBien">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
@@ -71,13 +58,13 @@
       </HBox>
       <TableView fx:id="tbDatos" prefHeight="223.0" prefWidth="519.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
         <columns>
-          <TableColumn fx:id="flName" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="flFormat" prefWidth="79.0" text="Format" />
-            <TableColumn fx:id="flOrientation" prefWidth="71.0" text="Orentation" />
-            <TableColumn fx:id="flMarginTop" prefWidth="83.0" text="Margin Top" />
-            <TableColumn fx:id="flMarginButton" prefWidth="94.0" text="Margin Button" />
-            <TableColumn fx:id="flMarginRight" prefWidth="86.0" text="Margin Right" />
-            <TableColumn fx:id="flMarginLeft" prefWidth="91.0" text="Margin Left" />
+          <TableColumn fx:id="flName" prefWidth="135.0" text="Name" />
+          <TableColumn fx:id="flFormat" prefWidth="103.0" text="Format" />
+            <TableColumn fx:id="flOrientation" prefWidth="93.0" text="Orentation" />
+            <TableColumn fx:id="flMarginTop" prefWidth="100.0" text="Margin Top" />
+            <TableColumn fx:id="flMarginBotton" prefWidth="104.0" text="Margin Bottom" />
+            <TableColumn fx:id="flMarginRight" prefWidth="93.0" text="Margin Right" />
+            <TableColumn fx:id="flMarginLeft" prefWidth="99.0" text="Margin Left" />
         </columns>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -88,7 +75,7 @@
       </TableView>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onbBtnCrearFormat">
                <HBox.margin>
                   <Insets left="10.0" right="5.0" />
                </HBox.margin>
@@ -100,7 +87,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+            <Button fx:id="btEliminar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onbBtnEliminarFormat">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
@@ -112,7 +99,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+            <Button fx:id="btEditar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onbBtnEditarFormat">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
