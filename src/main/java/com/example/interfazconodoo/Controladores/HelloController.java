@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -92,20 +93,35 @@ public class HelloController {
     @FXML
     public void onbBtnEditarFormat(ActionEvent actionEvent) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevo_formato.fxml"));
-        FormatoController formatoController = fxmlLoader.getController();
-        Scene scene = new Scene(fxmlLoader.load(), 750, 560);
-        scene.getStylesheets().add(getClass().getResource("estilos2.css").toExternalForm());
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.setTitle("Paperformat Connection");
-        stage.setScene(scene);
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
-        stage.show();
+        Paperformat formatoInicial = (Paperformat) tbDatos.getSelectionModel().getSelectedItem();
 
+        if (formatoInicial != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevo_formato.fxml"));
 
+                // Cargar la vista antes de obtener el controlador
+                Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+
+                // Obtener el controlador después de cargar la vista
+                FormatoController formatoController = fxmlLoader.getController();
+                formatoController.setFormatoNuevo(formatoInicial);
+
+                Stage stage = new Stage();
+                stage.setResizable(false);
+                stage.setTitle("Modificar Idioma");
+                stage.setScene(scene);
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace(); // Añadir esto para ver errores si ocurren
+            }
+        } else {
+            System.err.println("Selecciona un formato por favor.");
+        }
     }
+
 
     @FXML
     public void onbBtnEliminarFormat(ActionEvent actionEvent) throws IOException, SQLException {
@@ -141,11 +157,11 @@ public class HelloController {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevo_formato.fxml"));
         FormatoController formatoController = fxmlLoader.getController();
-        Scene scene = new Scene(fxmlLoader.load(), 750, 560);
-        scene.getStylesheets().add(getClass().getResource("estilos2.css").toExternalForm());
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        //scene.getStylesheets().add(getClass().getResource("estilos2.css").toExternalForm());
         Stage stage = new Stage();
         stage.setResizable(false);
-        stage.setTitle("Paperformat Connection");
+        stage.setTitle("Crear Idioma");
         stage.setScene(scene);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());

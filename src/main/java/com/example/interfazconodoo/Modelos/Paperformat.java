@@ -24,6 +24,24 @@ public class Paperformat {
     private Double margin_left;
     private Double margin_right;
 
+    void Paperformat(Integer id, String name, String format, String orientation, Double margin_top, Double margin_bottom, Double margin_left, Double margin_right) {
+
+        this.id = id;
+        this.name = name;
+        this.format = format;
+        this.orientation = orientation;
+        this.margin_top = margin_top;
+        this.margin_bottom = margin_bottom;
+        this.margin_left = margin_left;
+        this.margin_right = margin_right;
+
+
+    }
+
+    void Paperformat(){
+
+    }
+
     public Integer getId() {
         return id;
     }
