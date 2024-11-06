@@ -108,7 +108,7 @@ public class HelloController {
 
                 Stage stage = new Stage();
                 stage.setResizable(false);
-                stage.setTitle("Modificar Idioma");
+                stage.setTitle("Modificar Formato");
                 stage.setScene(scene);
                 stage.initModality(Modality.WINDOW_MODAL);
                 stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
@@ -156,16 +156,20 @@ public class HelloController {
     public void onbBtnCrearFormat(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevo_formato.fxml"));
-        FormatoController formatoController = fxmlLoader.getController();
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        //scene.getStylesheets().add(getClass().getResource("estilos2.css").toExternalForm());
+
+        scene.getStylesheets().add(HelloApplication.class.getResource("estilos.css").toExternalForm());
+
+        FormatoController formatoController = fxmlLoader.getController();
+
         Stage stage = new Stage();
         stage.setResizable(false);
-        stage.setTitle("Crear Idioma");
+        stage.setTitle("Crear Formato");
         stage.setScene(scene);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
         stage.show();
     }
+
 
 }

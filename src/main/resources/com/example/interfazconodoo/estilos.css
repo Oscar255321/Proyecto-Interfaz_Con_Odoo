@@ -1,10 +1,33 @@
 
 .button{
+
     -fx-background-color: #ffffff;
     -fx-background-radius: 10px;
     -fx-pref-width: 25px;         /* Ancho del boton*/
     -fx-pref-height: 25px;        /*Alto del boton*/
     -fx-font-family: Arial;       /*Tipo de letra*/
+    -fx-padding: 10px;
+}
+
+.button2{
+
+    -fx-background-color: #83e19b;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 100px;         /* Ancho del boton*/
+    -fx-pref-height: 25px;        /*Alto del boton*/
+    -fx-font-family: Arial;       /*Tipo de letra*/
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+.btCancelar{
+
+    -fx-background-color: #d16767;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 100px;         /* Ancho del boton*/
+    -fx-pref-height: 25px;        /*Alto del boton*/
+    -fx-font-family: Arial;       /*Tipo de letra*/
+    -fx-font-weight: bold;
     -fx-padding: 10px;
 }
 
@@ -28,11 +51,14 @@
 }
 
 .table-view{
+
     -fx-background-radius: 10px;
 
 }
 
 .table-column{
 
+    -fx-background-color: #b2d7e6;
 }
+
 

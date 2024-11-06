@@ -7,22 +7,22 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazconodoo.Controladores.FormatoController">
    <children>
-      <Label alignment="CENTER" layoutX="143.0" layoutY="41.0" prefHeight="17.0" prefWidth="343.0" styleClass="labelTitulo" text="Nuevo Formato" />
-      <TextField fx:id="texto_name" layoutX="105.0" layoutY="99.0" />
+      <Label alignment="CENTER" layoutX="26.0" layoutY="40.0" prefHeight="17.0" prefWidth="343.0" styleClass="labelTitulo" text="Nuevo Formato" />
+      <TextField fx:id="texto_name" layoutX="105.0" layoutY="132.0" />
       <TextField fx:id="num_marginT" layoutX="399.0" layoutY="99.0" />
-      <TextField fx:id="texto_format" layoutX="105.0" layoutY="152.0" />
+      <TextField fx:id="texto_format" layoutX="105.0" layoutY="180.0" />
       <TextField fx:id="num_marginB" layoutX="399.0" layoutY="152.0" />
-      <TextField fx:id="texto_orientation" layoutX="105.0" layoutY="201.0" />
+      <TextField fx:id="texto_orientation" layoutX="105.0" layoutY="226.0" />
       <TextField fx:id="num_marginR" layoutX="399.0" layoutY="201.0" />
       <TextField fx:id="num_marginL" layoutX="399.0" layoutY="251.0" />
-      <Label layoutX="61.0" layoutY="103.0" text="Name" />
-      <Label layoutX="51.0" layoutY="156.0" text="Format" />
+      <Label layoutX="61.0" layoutY="137.0" text="Name" />
+      <Label layoutX="51.0" layoutY="185.0" text="Format" />
       <Label layoutX="322.0" layoutY="103.0" text="Margin Top" />
-      <Label layoutX="26.0" layoutY="205.0" text="Orientation" />
+      <Label layoutX="26.0" layoutY="231.0" text="Orientation" />
       <Label layoutX="300.0" layoutY="156.0" text="Margin Bottom" />
       <Label layoutX="306.0" layoutY="206.0" prefHeight="16.0" prefWidth="85.0" text="Margin Right" />
       <Label layoutX="313.0" layoutY="256.0" prefHeight="16.0" prefWidth="77.0" text="Margin Left" />
-      <Button layoutX="118.0" layoutY="330.0" mnemonicParsing="false" onAction="#onBtCrear" prefHeight="35.0" prefWidth="107.0" text="Aceptar" />
+      <Button layoutX="118.0" layoutY="330.0" mnemonicParsing="false" onAction="#onBtCrear" prefHeight="35.0" prefWidth="107.0" styleClass="button2" text="Aceptar" />
       <Button layoutX="362.0" layoutY="330.0" mnemonicParsing="false" onAction="#onBtSalir" styleClass="btCancelar" text="Cancelar" />
    </children>
 </AnchorPane>
