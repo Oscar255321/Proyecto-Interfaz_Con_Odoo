@@ -22,7 +22,7 @@
       <Label layoutX="300.0" layoutY="156.0" text="Margin Bottom" />
       <Label layoutX="306.0" layoutY="206.0" prefHeight="16.0" prefWidth="85.0" text="Margin Right" />
       <Label layoutX="313.0" layoutY="256.0" prefHeight="16.0" prefWidth="77.0" text="Margin Left" />
-      <Button layoutX="118.0" layoutY="330.0" mnemonicParsing="false" onAction="#onBtCrear" prefHeight="35.0" prefWidth="107.0" styleClass="button2" text="Aceptar" />
+      <Button fx:id="btCrear" layoutX="118.0" layoutY="330.0" mnemonicParsing="false" onAction="#onBtCrear" prefHeight="35.0" prefWidth="107.0" styleClass="button2" text="Aceptar" />
       <Button layoutX="362.0" layoutY="330.0" mnemonicParsing="false" onAction="#onBtSalir" styleClass="btCancelar" text="Cancelar" />
    </children>
 </AnchorPane>

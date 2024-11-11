@@ -5,6 +5,8 @@ import com.example.interfazconodoo.HelloApplication;
 import com.example.interfazconodoo.Modelos.Paperformat;
 import com.example.interfazconodoo.DAO.PaperformatDAO;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -47,6 +49,8 @@ public class HelloController {
     @FXML
     private TextField texto_buscar;
 
+    private ObservableList<Paperformat> datos = FXCollections.observableArrayList();
+
     public void initialize() {
         // Asignar valores de celda para cada columna, usando los nombres de propiedad de Paperformat
         flName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -56,6 +60,25 @@ public class HelloController {
         flMarginBotton.setCellValueFactory(new PropertyValueFactory<>("marginBottom"));
         flMarginRight.setCellValueFactory(new PropertyValueFactory<>("marginRight"));
         flMarginLeft.setCellValueFactory(new PropertyValueFactory<>("marginLeft"));
+
+        tbDatos.setItems(datos);
+
+        // Binding reactivo para desactivar btEliminar y btEditar si no hay selección
+        BooleanBinding noSelection = tbDatos.getSelectionModel().selectedItemProperty().isNull();
+        btEditar.disableProperty().bind(noSelection);
+        btEliminar.disableProperty().bind(noSelection);
+
+        // Binding para desactivar el botón de búsqueda si el campo está vacío
+        btEliminar.disableProperty().bind(Bindings.isEmpty(texto_buscar.textProperty()));
+
+        // Detectar cambios en el campo de búsqueda y aplicar el filtro reactivo
+        texto_buscar.textProperty().addListener((obs, oldText, newText) -> {
+            if (newText.isEmpty()) {
+                datos.clear(); // Limpiar la lista si el campo de búsqueda está vacío
+            } else {
+                onbBtnSearchBien(null); // Llamar al método de búsqueda cada vez que cambia el texto
+            }
+        });
     }
 
     @FXML

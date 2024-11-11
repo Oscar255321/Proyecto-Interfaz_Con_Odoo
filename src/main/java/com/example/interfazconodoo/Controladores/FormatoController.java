@@ -2,9 +2,12 @@ package com.example.interfazconodoo.Controladores;
 
 import com.example.interfazconodoo.DAO.PaperformatDAO;
 import com.example.interfazconodoo.Modelos.Paperformat;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,8 +30,11 @@ public class FormatoController {
     private TextField texto_orientation;
     @javafx.fxml.FXML
     private TextField texto_format;
+    @FXML
+    private Button btCrear;
 
     private Paperformat formatoInicial;
+
 
     public void setFormatoNuevo(Paperformat Paperformat) {
         this.formatoInicial = Paperformat;
@@ -44,84 +50,62 @@ public class FormatoController {
         num_marginB.setText(String.valueOf(formatoInicial.getMarginBottom()));
         num_marginL.setText(String.valueOf(formatoInicial.getMarginLeft()));
         num_marginR.setText(String.valueOf(formatoInicial.getMarginRight()));
+
+        // Enlazar campos de texto con propiedades de `formatoInicial`
+        formatoInicial.nameProperty().bindBidirectional(texto_name.textProperty());
+        formatoInicial.formatProperty().bindBidirectional(texto_format.textProperty());
+        formatoInicial.orientationProperty().bindBidirectional(texto_orientation.textProperty());
+        Bindings.bindBidirectional(num_marginT.textProperty(), formatoInicial.marginTopProperty(), new javafx.util.converter.NumberStringConverter());
+        Bindings.bindBidirectional(num_marginB.textProperty(), formatoInicial.marginBottomProperty(), new javafx.util.converter.NumberStringConverter());
+        Bindings.bindBidirectional(num_marginL.textProperty(), formatoInicial.marginLeftProperty(), new javafx.util.converter.NumberStringConverter());
+        Bindings.bindBidirectional(num_marginR.textProperty(), formatoInicial.marginRightProperty(), new javafx.util.converter.NumberStringConverter());
+    }
+
+    @FXML
+    public void initialize() {
+        // Binding reactivo para desactivar el botón `btCrear` hasta que todos los campos sean válidos
+        BooleanBinding camposIncompletos = texto_name.textProperty().isEmpty()
+                .or(texto_format.textProperty().isEmpty())
+                .or(texto_orientation.textProperty().isEmpty())
+                .or(num_marginT.textProperty().isEmpty())
+                .or(num_marginB.textProperty().isEmpty())
+                .or(num_marginL.textProperty().isEmpty())
+                .or(num_marginR.textProperty().isEmpty());
+
+        btCrear.disableProperty().bind(camposIncompletos);
     }
 
 
     @FXML
     public void onBtCrear(ActionEvent actionEvent) throws SQLException {
-
-        String name = texto_name.getText();
-        System.out.println(name);
-        String formato = texto_format.getText();
-        System.out.println(formato);
-        String orientation = texto_orientation.getText();
-        System.out.println(orientation);
-        Double margenT = Double.parseDouble(num_marginT.getText());
-        System.out.println(margenT);
-        Double margenB = Double.parseDouble(num_marginB.getText());
-        System.out.println(margenB);
-        Double margenL = Double.parseDouble(num_marginL.getText());
-        System.out.println(margenL);
-        Double margenR = Double.parseDouble(num_marginR.getText());
-        System.out.println(margenR);
-
-        if (formatoInicial != null) {
-
-            formatoInicial.setName(name);
-            System.out.println(formatoInicial);
-            formatoInicial.setFormat(formato);
-            System.out.println(formatoInicial);
-            formatoInicial.setOrientation(orientation);
-            System.out.println(formatoInicial);
-            formatoInicial.setMarginTop(margenT);
-            System.out.println(formatoInicial);
-            formatoInicial.setMarginBottom(margenB);
-            System.out.println(formatoInicial);
-            formatoInicial.setMarginLeft(margenL);
-            System.out.println(formatoInicial);
-            formatoInicial.setMarginRight(margenR);
-            System.out.println(formatoInicial);
-
-            try
-            {
+        // Aquí `formatoInicial` ya tiene todos los valores
+        // actualizados en tiempo real gracias a los bindings
+        try {
+            if (formatoInicial != null) {
+                // Si el formato existe, lo editamos
                 PaperformatDAO.editarFormato(formatoInicial);
-                Node source = (Node) actionEvent.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
-            }
-            catch (SQLException e)
-            {
-                e.printStackTrace();
+            } else {
+                // Si es un nuevo formato, lo creamos
+                PaperformatDAO.crearFormato(formatoInicial);
             }
 
-        }else{
+            // Cerrar la ventana actual
+            Node source = (Node) actionEvent.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
 
-            Paperformat formatoNuevo = new Paperformat();
-
-            formatoNuevo.setName(texto_name.getText());
-            formatoNuevo.setFormat(texto_format.getText());
-            formatoNuevo.setOrientation(texto_orientation.getText());
-            formatoNuevo.setMarginTop(Double.parseDouble(num_marginT.getText()));
-            formatoNuevo.setMarginBottom(Double.parseDouble(num_marginB.getText()));
-            formatoNuevo.setMarginRight(Double.parseDouble(num_marginR.getText()));
-            formatoNuevo.setMarginLeft(Double.parseDouble(num_marginL.getText()));
-
-            try{
-                PaperformatDAO.crearFormato(formatoNuevo);
-                Node source = (Node) actionEvent.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
-            } catch (SQLException e){
-                e.printStackTrace();
-            }
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @javafx.fxml.FXML
     public void onBtSalir(ActionEvent actionEvent) {
 
-
+        // Cerrar la ventana sin guardar cambios
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
 
     }
 
