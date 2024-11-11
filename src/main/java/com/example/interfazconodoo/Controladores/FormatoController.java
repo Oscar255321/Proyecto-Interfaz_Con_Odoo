@@ -78,24 +78,49 @@ public class FormatoController {
 
     @FXML
     public void onBtCrear(ActionEvent actionEvent) throws SQLException {
-        // Aquí `formatoInicial` ya tiene todos los valores
-        // actualizados en tiempo real gracias a los bindings
+
+        // Verificar si el objeto formatoInicial está correctamente inicializado
+        if (formatoInicial == null) {
+            formatoInicial = new Paperformat();  // Inicializar si es null
+        }
+
+        // Asignar valores a formatoInicial si es nuevo o si es un formato existente
+        String name = texto_name.getText();
+        String formato = texto_format.getText();
+        String orientation = texto_orientation.getText();
+        Double margenT = parseDouble(num_marginT.getText());
+        Double margenB = parseDouble(num_marginB.getText());
+        Double margenL = parseDouble(num_marginL.getText());
+        Double margenR = parseDouble(num_marginR.getText());
+
+        // Si formatoInicial ya está inicializado, actualizamos sus propiedades
+        formatoInicial.setName(name);
+        formatoInicial.setFormat(formato);
+        formatoInicial.setOrientation(orientation);
+        formatoInicial.setMarginTop(margenT);
+        formatoInicial.setMarginBottom(margenB);
+        formatoInicial.setMarginLeft(margenL);
+        formatoInicial.setMarginRight(margenR);
+
+        // Crear o editar el formato en la base de datos
+        if (formatoInicial.getId() == 0) {  // Si el ID es 0, significa que es un formato nuevo
+            PaperformatDAO.crearFormato(formatoInicial);
+        } else {
+            PaperformatDAO.editarFormato(formatoInicial);
+        }
+
+        // Cerrar la ventana
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
+
+    // Metodo para evitar la excepción si el valor numerico no es valido.
+    private Double parseDouble(String text) {
         try {
-            if (formatoInicial != null) {
-                // Si el formato existe, lo editamos
-                PaperformatDAO.editarFormato(formatoInicial);
-            } else {
-                // Si es un nuevo formato, lo creamos
-                PaperformatDAO.crearFormato(formatoInicial);
-            }
-
-            // Cerrar la ventana actual
-            Node source = (Node) actionEvent.getSource();
-            Stage stage = (Stage) source.getScene().getWindow();
-            stage.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return Double.parseDouble(text);
+        } catch (NumberFormatException e) {
+            return 0.0;  // Retornar un valor por defecto en caso de error
         }
     }
 

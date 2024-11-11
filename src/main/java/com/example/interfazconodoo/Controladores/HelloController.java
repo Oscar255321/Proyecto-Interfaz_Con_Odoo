@@ -68,9 +68,6 @@ public class HelloController {
         btEditar.disableProperty().bind(noSelection);
         btEliminar.disableProperty().bind(noSelection);
 
-        // Binding para desactivar el botón de búsqueda si el campo está vacío
-        btEliminar.disableProperty().bind(Bindings.isEmpty(texto_buscar.textProperty()));
-
         // Detectar cambios en el campo de búsqueda y aplicar el filtro reactivo
         texto_buscar.textProperty().addListener((obs, oldText, newText) -> {
             if (newText.isEmpty()) {
@@ -104,12 +101,15 @@ public class HelloController {
 
     @FXML
     public void onbBtnEditarFormat(ActionEvent actionEvent) throws IOException {
+
         Paperformat formatoInicial = tbDatos.getSelectionModel().getSelectedItem();
 
         if (formatoInicial != null) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevo_formato.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+
+                scene.getStylesheets().add(HelloApplication.class.getResource("estilos.css").toExternalForm());
 
                 FormatoController formatoController = fxmlLoader.getController();
                 formatoController.setFormatoNuevo(formatoInicial);
@@ -132,25 +132,22 @@ public class HelloController {
 
     @FXML
     public void onbBtnEliminarFormat(ActionEvent actionEvent) throws IOException, SQLException {
+
         Paperformat borrar = tbDatos.getSelectionModel().getSelectedItem();
 
-        if (borrar == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Seleccione un formato!!");
-            alert.showAndWait();
-        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ADVERTENCIA!");
             alert.setHeaderText(null);
             alert.setContentText("¿Estas seguro que quieres eliminar el formato?");
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
-                PaperformatDAO.eliminarFormato(borrar);
-                onbBtnSearchBien(null);
+                try {
+                    PaperformatDAO.eliminarFormato(borrar);
+                    onbBtnSearchBien(null); // Refrescar la tabla después de eliminar
+                } catch (SQLException e) {
+                    System.err.println("Error al eliminar: " + e.getMessage());
+                }
             }
-        }
     }
 
     @FXML

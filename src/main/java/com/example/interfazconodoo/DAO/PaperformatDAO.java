@@ -38,22 +38,23 @@ public class PaperformatDAO {
     public static void crearFormato(Paperformat formato) throws SQLException {
 
         try (Connection conexion = ConexionDB.getConnection();
-             PreparedStatement statement = conexion.prepareStatement
-                     ("INSERT INTO report_paperformat (name, format, orientation, margin_top, margin_bottom, margin_right, margin_left) " +
-                             "VALUES (?,?,?,?,?,?,?)");) {
+             PreparedStatement statement = conexion.prepareStatement(
+                     "INSERT INTO report_paperformat (name, format, orientation, margin_top, margin_bottom, margin_right, margin_left) " +
+                             "VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 
             statement.setString(1, formato.getName());
             statement.setString(2, formato.getFormat());
-            statement.setString(3, formato.getFormat());
+            statement.setString(3, formato.getOrientation());
             statement.setDouble(4, formato.getMarginTop());
             statement.setDouble(5, formato.getMarginBottom());
             statement.setDouble(6, formato.getMarginLeft());
             statement.setDouble(7, formato.getMarginRight());
             statement.executeUpdate();
 
+            // Mostrar un mensaje de éxito
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Información");
-            alert.setHeaderText("El formato a sido creado correctamente.");
+            alert.setHeaderText("El formato ha sido creado correctamente.");
             alert.showAndWait();
         }
 
