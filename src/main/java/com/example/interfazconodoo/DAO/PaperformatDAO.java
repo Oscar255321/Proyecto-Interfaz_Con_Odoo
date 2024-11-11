@@ -24,10 +24,10 @@ public class PaperformatDAO {
                 formato.setName(resultSet.getString("name"));
                 formato.setFormat(resultSet.getString("format"));
                 formato.setOrientation(resultSet.getString("orientation"));
-                formato.setMargin_top(resultSet.getDouble("margin_top"));
-                formato.setMargin_bottom(resultSet.getDouble("margin_bottom"));
-                formato.setMargin_left(resultSet.getDouble("margin_left"));
-                formato.setMargin_right(resultSet.getDouble("margin_right"));
+                formato.setMarginTop(resultSet.getDouble("margin_top"));
+                formato.setMarginBottom(resultSet.getDouble("margin_bottom"));
+                formato.setMarginLeft(resultSet.getDouble("margin_left"));
+                formato.setMarginRight(resultSet.getDouble("margin_right"));
                 formatos.add(formato);
             }
         }
@@ -45,10 +45,10 @@ public class PaperformatDAO {
             statement.setString(1, formato.getName());
             statement.setString(2, formato.getFormat());
             statement.setString(3, formato.getFormat());
-            statement.setDouble(4, formato.getMargin_top());
-            statement.setDouble(5, formato.getMargin_bottom());
-            statement.setDouble(6, formato.getMargin_left());
-            statement.setDouble(7, formato.getMargin_right());
+            statement.setDouble(4, formato.getMarginTop());
+            statement.setDouble(5, formato.getMarginBottom());
+            statement.setDouble(6, formato.getMarginLeft());
+            statement.setDouble(7, formato.getMarginRight());
             statement.executeUpdate();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -78,7 +78,7 @@ public class PaperformatDAO {
 
     public static void editarFormato(Paperformat formato) throws SQLException {
 
-        if (formato.getId() == null) {
+        if (formato.getId() == 0) {
             System.err.println("El ID del formato es null, no se puede editar sin un ID.");
             return;
         }
@@ -91,10 +91,10 @@ public class PaperformatDAO {
             statement.setString(1, formato.getName());
             statement.setString(2, formato.getFormat());
             statement.setString(3, formato.getOrientation()); // Cambiado a getOrientation()
-            statement.setDouble(4, formato.getMargin_top());
-            statement.setDouble(5, formato.getMargin_bottom());
-            statement.setDouble(6, formato.getMargin_left());
-            statement.setDouble(7, formato.getMargin_right());
+            statement.setDouble(4, formato.getMarginTop());
+            statement.setDouble(5, formato.getMarginBottom());
+            statement.setDouble(6, formato.getMarginLeft());
+            statement.setDouble(7, formato.getMarginRight());
             statement.setInt(8, formato.getId());
             statement.executeUpdate();
 

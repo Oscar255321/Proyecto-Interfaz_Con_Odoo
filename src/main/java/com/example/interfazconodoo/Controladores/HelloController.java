@@ -1,8 +1,9 @@
+
 package com.example.interfazconodoo.Controladores;
 
-import com.example.interfazconodoo.DAO.PaperformatDAO;
 import com.example.interfazconodoo.HelloApplication;
 import com.example.interfazconodoo.Modelos.Paperformat;
+import com.example.interfazconodoo.DAO.PaperformatDAO;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,38 +25,37 @@ import java.util.List;
 public class HelloController {
 
     @FXML
-    private TableView tbDatos;
+    private TableView<Paperformat> tbDatos;
     @FXML
-    private TableColumn flName;
+    private TableColumn<Paperformat, String> flName;
     @FXML
-    private TableColumn flFormat;
+    private TableColumn<Paperformat, String> flFormat;
     @FXML
-    private TableColumn flMarginLeft;
+    private TableColumn<Paperformat, Double> flMarginLeft;
     @FXML
-    private TableColumn flMarginRight;
+    private TableColumn<Paperformat, Double> flMarginRight;
     @FXML
-    private TableColumn flMarginTop;
+    private TableColumn<Paperformat, Double> flMarginTop;
     @FXML
-    private TableColumn flOrientation;
+    private TableColumn<Paperformat, String> flOrientation;
+    @FXML
+    private TableColumn<Paperformat, Double> flMarginBotton;
     @FXML
     private Button btEditar;
     @FXML
     private Button btEliminar;
     @FXML
     private TextField texto_buscar;
-    @FXML
-    private TableColumn flMarginBotton;
 
     public void initialize() {
-
+        // Asignar valores de celda para cada columna, usando los nombres de propiedad de Paperformat
         flName.setCellValueFactory(new PropertyValueFactory<>("name"));
         flFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
         flOrientation.setCellValueFactory(new PropertyValueFactory<>("orientation"));
-        flMarginTop.setCellValueFactory(new PropertyValueFactory<>("margin_top"));
-        flMarginBotton.setCellValueFactory(new PropertyValueFactory<>("margin_bottom"));
-        flMarginRight.setCellValueFactory(new PropertyValueFactory<>("margin_right"));
-        flMarginLeft.setCellValueFactory(new PropertyValueFactory<>("margin_left"));
-
+        flMarginTop.setCellValueFactory(new PropertyValueFactory<>("marginTop"));
+        flMarginBotton.setCellValueFactory(new PropertyValueFactory<>("marginBottom"));
+        flMarginRight.setCellValueFactory(new PropertyValueFactory<>("marginRight"));
+        flMarginLeft.setCellValueFactory(new PropertyValueFactory<>("marginLeft"));
     }
 
     @FXML
@@ -68,18 +67,10 @@ public class HelloController {
                     List<Paperformat> formatos = PaperformatDAO.obtenerFormatos(texto_buscar.getText());
                     ObservableList<Paperformat> datos = FXCollections.observableArrayList(formatos);
 
-                    Platform.runLater(() -> {
-                        // Actualizar la interfaz gráfica con los valores de nombre y apellido
-                        // Por ejemplo, añadirlos a un ListView, Label, etc.
-                        tbDatos.setItems(datos);
-                    });
-
+                    Platform.runLater(() -> tbDatos.setItems(datos));
 
                 } catch (SQLException e) {
                     System.err.println("Error de SQL al consultar: " + e.getMessage());
-                    Platform.runLater(() -> {
-
-                    });
                 }
                 return null;
             }
@@ -88,21 +79,15 @@ public class HelloController {
         hilo.start();
     }
 
-
-
     @FXML
     public void onbBtnEditarFormat(ActionEvent actionEvent) throws IOException {
-
-        Paperformat formatoInicial = (Paperformat) tbDatos.getSelectionModel().getSelectedItem();
+        Paperformat formatoInicial = tbDatos.getSelectionModel().getSelectedItem();
 
         if (formatoInicial != null) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevo_formato.fxml"));
-
-                // Cargar la vista antes de obtener el controlador
                 Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 
-                // Obtener el controlador después de cargar la vista
                 FormatoController formatoController = fxmlLoader.getController();
                 formatoController.setFormatoNuevo(formatoInicial);
 
@@ -115,46 +100,38 @@ public class HelloController {
                 stage.show();
 
             } catch (IOException e) {
-                e.printStackTrace(); // Añadir esto para ver errores si ocurren
+                e.printStackTrace();
             }
         } else {
             System.err.println("Selecciona un formato por favor.");
         }
     }
 
-
     @FXML
     public void onbBtnEliminarFormat(ActionEvent actionEvent) throws IOException, SQLException {
-
-        Paperformat borrar = (Paperformat) tbDatos.getSelectionModel().getSelectedItem();
+        Paperformat borrar = tbDatos.getSelectionModel().getSelectedItem();
 
         if (borrar == null) {
-
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText("Selecione un formato!!");
-        }else{
-
+            alert.setContentText("Seleccione un formato!!");
+            alert.showAndWait();
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ADVERTENCIA!");
             alert.setHeaderText(null);
             alert.setContentText("¿Estas seguro que quieres eliminar el formato?");
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
-
                 PaperformatDAO.eliminarFormato(borrar);
                 onbBtnSearchBien(null);
             }
         }
-
-
-
     }
 
     @FXML
     public void onbBtnCrearFormat(ActionEvent actionEvent) throws IOException {
-
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevo_formato.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 
@@ -167,9 +144,7 @@ public class HelloController {
         stage.setTitle("Crear Formato");
         stage.setScene(scene);
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+        stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
         stage.show();
     }
-
-
 }

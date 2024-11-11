@@ -40,10 +40,10 @@ public class FormatoController {
         texto_name.setText(formatoInicial.getName());
         texto_format.setText(formatoInicial.getFormat());
         texto_orientation.setText(formatoInicial.getOrientation());
-        num_marginT.setText(String.valueOf(formatoInicial.getMargin_top()));
-        num_marginB.setText(String.valueOf(formatoInicial.getMargin_bottom()));
-        num_marginL.setText(String.valueOf(formatoInicial.getMargin_left()));
-        num_marginR.setText(String.valueOf(formatoInicial.getMargin_right()));
+        num_marginT.setText(String.valueOf(formatoInicial.getMarginTop()));
+        num_marginB.setText(String.valueOf(formatoInicial.getMarginBottom()));
+        num_marginL.setText(String.valueOf(formatoInicial.getMarginLeft()));
+        num_marginR.setText(String.valueOf(formatoInicial.getMarginRight()));
     }
 
 
@@ -73,13 +73,13 @@ public class FormatoController {
             System.out.println(formatoInicial);
             formatoInicial.setOrientation(orientation);
             System.out.println(formatoInicial);
-            formatoInicial.setMargin_top(margenT);
+            formatoInicial.setMarginTop(margenT);
             System.out.println(formatoInicial);
-            formatoInicial.setMargin_bottom(margenB);
+            formatoInicial.setMarginBottom(margenB);
             System.out.println(formatoInicial);
-            formatoInicial.setMargin_left(margenL);
+            formatoInicial.setMarginLeft(margenL);
             System.out.println(formatoInicial);
-            formatoInicial.setMargin_right(margenR);
+            formatoInicial.setMarginRight(margenR);
             System.out.println(formatoInicial);
 
             try
@@ -101,10 +101,10 @@ public class FormatoController {
             formatoNuevo.setName(texto_name.getText());
             formatoNuevo.setFormat(texto_format.getText());
             formatoNuevo.setOrientation(texto_orientation.getText());
-            formatoNuevo.setMargin_top(Double.parseDouble(num_marginT.getText()));
-            formatoNuevo.setMargin_bottom(Double.parseDouble(num_marginB.getText()));
-            formatoNuevo.setMargin_right(Double.parseDouble(num_marginR.getText()));
-            formatoNuevo.setMargin_left(Double.parseDouble(num_marginL.getText()));
+            formatoNuevo.setMarginTop(Double.parseDouble(num_marginT.getText()));
+            formatoNuevo.setMarginBottom(Double.parseDouble(num_marginB.getText()));
+            formatoNuevo.setMarginRight(Double.parseDouble(num_marginR.getText()));
+            formatoNuevo.setMarginLeft(Double.parseDouble(num_marginL.getText()));
 
             try{
                 PaperformatDAO.crearFormato(formatoNuevo);
