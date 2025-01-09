@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazconodoo.Controladores.FormatoController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazconodoo.controladores.FormatoController">
    <children>
       <Label alignment="CENTER" layoutX="26.0" layoutY="40.0" prefHeight="17.0" prefWidth="343.0" styleClass="labelTitulo" text="Nuevo Formato" />
       <TextField fx:id="texto_name" layoutX="105.0" layoutY="132.0" />
