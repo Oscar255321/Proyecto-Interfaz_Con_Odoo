@@ -12,6 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Clase para gestionar el funcionamiento de la interfaz de editar y crear formatos.
+ *
+ * @author Oscar Abellan
+ * @version 1.0
+ */
 
 public class FormatoController {
 
@@ -34,11 +40,20 @@ public class FormatoController {
 
   private Paperformat formatoinicial;
 
+  /**
+   * Insertamos el nuevo formato o el modificado.
+   */
 
   public void setFormatoNuevo(Paperformat paperformat) {
     this.formatoinicial = paperformat;
     cargarDatos();
   }
+
+  /**
+   * Cargamos los datos del formato.
+   *
+   * <p>Enlazamos los campos con con los campos de texto de la interfaz usando los binding.</p>
+   */
 
   private void cargarDatos() {
 
@@ -50,7 +65,6 @@ public class FormatoController {
     marginl.setText(String.valueOf(formatoinicial.getMarginLeft()));
     marginr.setText(String.valueOf(formatoinicial.getMarginRight()));
 
-    // Enlazar campos de texto con propiedades de `formatoinicial`
     formatoinicial.nameProperty().bindBidirectional(textoname.textProperty());
     formatoinicial.formatProperty().bindBidirectional(textoformat.textProperty());
     formatoinicial.orientationProperty().bindBidirectional(textorientation.textProperty());
@@ -63,6 +77,10 @@ public class FormatoController {
     Bindings.bindBidirectional(marginr.textProperty(), formatoinicial.marginRightProperty(),
         new javafx.util.converter.NumberStringConverter());
   }
+
+  /**
+   * Binding reactivo para desactivar el botón `btCrear` hasta que todos los campos sean válidos.
+   */
 
   @FXML
   public void initialize() {
@@ -78,6 +96,11 @@ public class FormatoController {
     btcrear.disableProperty().bind(camposIncompletos);
   }
 
+  /**
+   * Creamos un elemento nuevo en la tabla de "report_paperformat" o editamos un elemento ya crado.
+   *
+   * <p>Tambien controlamos el problema de un formato inadecuadoi de un double.</p>
+   */
 
   @FXML
   public void onBtCrear(ActionEvent actionEvent) throws SQLException {
@@ -126,10 +149,13 @@ public class FormatoController {
     }
   }
 
+  /**
+   * Cerramos la ventana.
+   */
+
   @javafx.fxml.FXML
   public void onBtSalir(ActionEvent actionEvent) {
 
-    // Cerrar la ventana sin guardar cambios
     Node source = (Node) actionEvent.getSource();
     Stage stage = (Stage) source.getScene().getWindow();
     stage.close();

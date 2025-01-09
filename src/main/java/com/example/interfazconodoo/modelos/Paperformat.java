@@ -1,7 +1,23 @@
 package com.example.interfazconodoo.modelos;
 
-import javafx.beans.property.*;
 import java.sql.Timestamp;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+/**
+ * Clase en la que tenemos los campos que encontramos en la tabla "report_paperformat".
+ *
+ * @author Oscar Abellan
+ * @version 1.0
+ */
 
 public class Paperformat {
 
@@ -17,7 +33,7 @@ public class Paperformat {
   private final StringProperty format = new SimpleStringProperty(this, "format");
   private final StringProperty orientation = new SimpleStringProperty(this, "orientation");
 
-  private final BooleanProperty default_ = new SimpleBooleanProperty(this, "default_");
+  private final BooleanProperty defecto = new SimpleBooleanProperty(this, "default_");
   private final BooleanProperty headerLine = new SimpleBooleanProperty(this, "headerLine");
   private final BooleanProperty disableShrinking = new SimpleBooleanProperty(this,
       "disableShrinking");
@@ -31,7 +47,10 @@ public class Paperformat {
   private final DoubleProperty marginLeft = new SimpleDoubleProperty(this, "marginLeft");
   private final DoubleProperty marginRight = new SimpleDoubleProperty(this, "marginRight");
 
-  // Constructor con parámetros
+  /**
+   * Constructor con los parametros que se van a usar.
+   */
+
   public Paperformat(Integer id, String name, String format, String orientation, Double marginTop,
       Double marginBottom, Double marginLeft, Double marginRight) {
     this.id.set(id);
@@ -44,11 +63,18 @@ public class Paperformat {
     this.marginRight.set(marginRight);
   }
 
-  // Constructor vacío
+  /**
+   * Constructor vacio.
+   */
+
   public Paperformat() {
   }
 
-  // Getters y Setters con Property Methods
+  /**
+   * Obtener el id del formato.
+   *
+   * @return El id del formato.
+   */
 
   public IntegerProperty idProperty() {
     return id;
@@ -57,6 +83,10 @@ public class Paperformat {
   public int getId() {
     return id.get();
   }
+
+  /**
+   * Insertar el id del formato.
+   */
 
   public void setId(int id) {
     this.id.set(id);
@@ -134,6 +164,12 @@ public class Paperformat {
     this.writeUid.set(writeUid);
   }
 
+  /**
+   * Obtener el nombre del formato.
+   *
+   * @return El nombre del formato.
+   */
+
   public StringProperty nameProperty() {
     return name;
   }
@@ -142,9 +178,19 @@ public class Paperformat {
     return name.get();
   }
 
+  /**
+   * Insertar el nombre del formato.
+   */
+
   public void setName(String name) {
     this.name.set(name);
   }
+
+  /**
+   * Obtener el formato del formato.
+   *
+   * @return El formato del formato.
+   */
 
   public StringProperty formatProperty() {
     return format;
@@ -154,9 +200,19 @@ public class Paperformat {
     return format.get();
   }
 
+  /**
+   * Inseratr el nombre del formato.
+   */
+
   public void setFormat(String format) {
     this.format.set(format);
   }
+
+  /**
+   * Obtener la orientación del formato.
+   *
+   * @return La orientación del formato.
+   */
 
   public StringProperty orientationProperty() {
     return orientation;
@@ -166,20 +222,24 @@ public class Paperformat {
     return orientation.get();
   }
 
+  /**
+   * Insertar la orientación del formato.
+   */
+
   public void setOrientation(String orientation) {
     this.orientation.set(orientation);
   }
 
   public BooleanProperty defaultProperty() {
-    return default_;
+    return defecto;
   }
 
   public boolean isDefault() {
-    return default_.get();
+    return defecto.get();
   }
 
-  public void setDefault(boolean default_) {
-    this.default_.set(default_);
+  public void setDefault(boolean defecto) {
+    this.defecto.set(defecto);
   }
 
   public BooleanProperty headerLineProperty() {
@@ -230,6 +290,12 @@ public class Paperformat {
     this.writeDate.set(writeDate);
   }
 
+  /**
+   * Obtener el margen superior del formato.
+   *
+   * @return El margen superior del formato.
+   */
+
   public DoubleProperty marginTopProperty() {
     return marginTop;
   }
@@ -238,9 +304,19 @@ public class Paperformat {
     return marginTop.get();
   }
 
+  /**
+   * Inserta el margen superior del formato.
+   */
+
   public void setMarginTop(double marginTop) {
     this.marginTop.set(marginTop);
   }
+
+  /**
+   * Obtener el margen inferior del formato.
+   *
+   * @return El margen inferior del formato.
+   */
 
   public DoubleProperty marginBottomProperty() {
     return marginBottom;
@@ -250,9 +326,19 @@ public class Paperformat {
     return marginBottom.get();
   }
 
+  /**
+   * Insertar el margen inferior del formato.
+   */
+
   public void setMarginBottom(double marginBottom) {
     this.marginBottom.set(marginBottom);
   }
+
+  /**
+   * Obtener el margen izquierdo del formato.
+   *
+   * @return El margen izquierdo del formato.
+   */
 
   public DoubleProperty marginLeftProperty() {
     return marginLeft;
@@ -262,9 +348,19 @@ public class Paperformat {
     return marginLeft.get();
   }
 
+  /**
+   * Insertar el margen izquierdo del formato.
+   */
+
   public void setMarginLeft(double marginLeft) {
     this.marginLeft.set(marginLeft);
   }
+
+  /**
+   * Obtener el margen derecho del formato.
+   *
+   * @return El margen derecho del formato.
+   */
 
   public DoubleProperty marginRightProperty() {
     return marginRight;
@@ -273,6 +369,10 @@ public class Paperformat {
   public double getMarginRight() {
     return marginRight.get();
   }
+
+  /**
+   * Insertar el margen derecho del formato.
+   */
 
   public void setMarginRight(double marginRight) {
     this.marginRight.set(marginRight);

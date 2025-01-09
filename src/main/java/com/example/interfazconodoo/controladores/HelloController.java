@@ -27,6 +27,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Clase para gestionar el funcionamiento de la interfaz.
+ *
+ * @author Oscar Abellan
+ * @version 1.0
+ */
+
 public class HelloController {
 
   @FXML
@@ -54,8 +61,16 @@ public class HelloController {
 
   private ObservableList<Paperformat> datos = FXCollections.observableArrayList();
 
+  /**
+   * Asignar valores de celda para cada columna, usando los nombres de propiedad de Paperformat.
+   *
+   * <p>Binding reactivo para desactivar btEliminar y btEditar si no hay selección.</p>
+   *
+   * <p>Detectar cambios en el campo de búsqueda y aplicar el filtro reactivo.</p>
+   */
+
   public void initialize() {
-    // Asignar valores de celda para cada columna, usando los nombres de propiedad de Paperformat
+
     flName.setCellValueFactory(new PropertyValueFactory<>("name"));
     flFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
     flOrientation.setCellValueFactory(new PropertyValueFactory<>("orientation"));
@@ -66,12 +81,10 @@ public class HelloController {
 
     tbDatos.setItems(datos);
 
-    // Binding reactivo para desactivar btEliminar y btEditar si no hay selección
     BooleanBinding noSelection = tbDatos.getSelectionModel().selectedItemProperty().isNull();
     btEditar.disableProperty().bind(noSelection);
     btEliminar.disableProperty().bind(noSelection);
 
-    // Detectar cambios en el campo de búsqueda y aplicar el filtro reactivo
     textobuscar.textProperty().addListener((obs, oldText, newText) -> {
       if (newText.isEmpty()) {
         datos.clear(); // Limpiar la lista si el campo de búsqueda está vacío
@@ -80,6 +93,11 @@ public class HelloController {
       }
     });
   }
+
+  /**
+   * Cargamos los datos al clicar el boton vacio y cuando introducimos un texto nos busca el formato
+   * que queremos por su nombre.
+   */
 
   @FXML
   public void onbBtnSearchBien(ActionEvent actionEvent) {
@@ -101,6 +119,10 @@ public class HelloController {
     Thread hilo = new Thread(tarea);
     hilo.start();
   }
+
+  /**
+   * Cargamos una nueva interfaz para editar un campo de la tabla.
+   */
 
   @FXML
   public void onbBtnEditarFormat(ActionEvent actionEvent) throws IOException {
@@ -135,6 +157,11 @@ public class HelloController {
     }
   }
 
+  /**
+   * Al seleccionar un formato lo eliminamos con este metodo, mostrando una alerta para asegurarnos
+   * de que queremos borrarlo. Y al eliminar nos muestra la tabla sin ese elemento.
+   */
+
   @FXML
   public void onbBtnEliminarFormat(ActionEvent actionEvent) throws IOException, SQLException {
 
@@ -155,6 +182,11 @@ public class HelloController {
       }
     }
   }
+
+  /**
+   * Cargamos una nueva interfaz para crear un campo de la tabla. Que serai la misma interfaz que
+   * para editar.
+   */
 
   @FXML
   public void onbBtnCrearFormat(ActionEvent actionEvent) throws IOException {

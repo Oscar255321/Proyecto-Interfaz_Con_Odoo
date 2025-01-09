@@ -114,8 +114,8 @@ public class Paperformatdao {
   /**
    * Editar un formato de la base de datos.
    *
-   * <p>Si aun no ha sido creado este formnato, este método creara el formato.
-   * Si el formato ya ha sido creado saltara una excepción en tiempo de ejecución.</p>
+   * <p>Modificamos todos los campos de un elemento de la tabla. Si el id
+   * es 0 saltara un error en tiempo de ejecución.</p>
    */
 
   public static void editarFormato(Paperformat formato) throws SQLException {
