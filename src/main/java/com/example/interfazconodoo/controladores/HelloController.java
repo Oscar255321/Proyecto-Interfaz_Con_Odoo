@@ -88,8 +88,6 @@ public class HelloController {
     textobuscar.textProperty().addListener((obs, oldText, newText) -> {
       if (newText.isEmpty()) {
         datos.clear(); // Limpiar la lista si el campo de búsqueda está vacío
-      } else {
-        onbBtnSearchBien(null); // Llamar al método de búsqueda cada vez que cambia el texto
       }
     });
   }

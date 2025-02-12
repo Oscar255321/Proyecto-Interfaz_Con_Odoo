@@ -31,7 +31,7 @@ public class Conexion {
 
   public static Connection getConnection() {
 
-    String dbName = "FutboleroShop";
+    String dbName = "Empresa_db";
     String dbPort = "5432";
     String username = "odoo";
     String password = "odoo";
