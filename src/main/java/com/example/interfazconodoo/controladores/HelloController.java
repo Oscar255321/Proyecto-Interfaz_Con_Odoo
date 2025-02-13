@@ -57,9 +57,16 @@ public class HelloController {
   @FXML
   private Button btEliminar;
   @FXML
+  private Button btBuscar;
+  @FXML
+  private Button btCrear;
+  @FXML
   private TextField textobuscar;
 
+
   private ObservableList<Paperformat> datos = FXCollections.observableArrayList();
+
+
 
   /**
    * Asignar valores de celda para cada columna, usando los nombres de propiedad de Paperformat.

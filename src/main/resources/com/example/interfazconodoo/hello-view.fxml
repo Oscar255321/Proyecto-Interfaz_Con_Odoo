@@ -46,7 +46,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#onbBtnSearchBien" prefHeight="15.0" prefWidth="28.0">
+            <Button fx:id="btBuscar" mnemonicParsing="false" onAction="#onbBtnSearchBien" prefHeight="15.0" prefWidth="28.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="625.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,7 +75,7 @@
       </TableView>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onbBtnCrearFormat">
+            <Button fx:id="btCrear" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onbBtnCrearFormat">
                <HBox.margin>
                   <Insets left="10.0" right="5.0" />
                </HBox.margin>

@@ -1,4 +1,4 @@
-package com.example.interfazconodoo.controladores;
+package com.example.interfazconodoo;
 
 
 import static org.testfx.api.FxAssert.verifyThat;
@@ -7,6 +7,7 @@ import static org.testfx.matcher.control.TextMatchers.hasText;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,21 +21,22 @@ import org.testfx.framework.junit5.Start;
 @ExtendWith(ApplicationExtension.class)
 class HelloControllerTest {
 
-  private HelloController controller;
+  Pane mainroot;
+  Stage mainstage;
 
   @Start
   private void start(Stage stage) throws Exception {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-    Parent root = loader.load();
-    controller = loader.getController();
-
-    stage.setScene(new Scene(root));
+    mainroot = (Pane) FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+    mainstage = stage;
+    stage.setScene(new Scene(mainroot));
     stage.show();
+    stage.toFront();
   }
 
   @Test
   void testBotonBuscar(FxRobot robot) {
-    robot.clickOn("#textobuscar").write("FormatoA");
+    robot.clickOn("#textobuscar").write("A4");
+    robot.sleep(1000);
     robot.clickOn("#btBuscar");
     verifyThat("#tbDatos", tableView -> !tableView.getId().isEmpty());
   }
