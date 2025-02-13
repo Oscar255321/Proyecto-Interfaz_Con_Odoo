@@ -103,10 +103,6 @@ public class Paperformatdao {
       statement.setString(1, formato.getName());
       statement.executeUpdate();
 
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Información");
-      alert.setHeaderText("El formato a sido eliminado correctamente.");
-      alert.showAndWait();
     }
 
   }

@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,24 +22,27 @@ import javafx.stage.Stage;
 
 public class FormatoController {
 
-  @javafx.fxml.FXML
-  private TextField margint;
-  @javafx.fxml.FXML
-  private TextField textoname;
-  @javafx.fxml.FXML
+  private Paperformat formatoinicial;
+  @FXML
+  private Label tfTitulo;
+  @FXML
   private TextField marginb;
-  @javafx.fxml.FXML
+  @FXML
   private TextField marginr;
-  @javafx.fxml.FXML
-  private TextField marginl;
-  @javafx.fxml.FXML
-  private TextField textorientation;
-  @javafx.fxml.FXML
+  @FXML
+  private TextField margint;
+  @FXML
   private TextField textoformat;
   @FXML
+  private TextField textorientation;
+  @FXML
+  private TextField marginl;
+  @FXML
+  private TextField textoname;
+  @FXML
+  private Button btsalir;
+  @FXML
   private Button btcrear;
-
-  private Paperformat formatoinicial;
 
   /**
    * Insertamos el nuevo formato o el modificado.
