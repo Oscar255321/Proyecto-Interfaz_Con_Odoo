@@ -7,7 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Clase para iniciar el programa.
+ * Clase principal que inicia la aplicación JavaFX.
+ *
+ * <p>Esta clase extiende de {@link Application} y se encarga de cargar la interfaz gráfica
+ * definida en un archivo FXML, aplicar estilos CSS y mostrar la ventana principal.</p>
  *
  * @author Oscar Abellan
  * @version 1.0
@@ -16,7 +19,13 @@ import javafx.stage.Stage;
 public class HelloApplication extends Application {
 
   /**
-   * Creamos la interfaz.
+   * Método sobrescrito de {@link Application} que se ejecuta al iniciar la aplicación.
+   *
+   * <p>Carga la interfaz gráfica desde un archivo FXML, aplica una hoja de estilos CSS,
+   * configura el título de la ventana y la muestra en pantalla.</p>
+   *
+   * @param stage La ventana principal de la aplicación.
+   * @throws IOException Si ocurre un error al cargar el archivo FXML.
    */
 
   @Override
@@ -30,7 +39,12 @@ public class HelloApplication extends Application {
   }
 
   /**
-   * Inicia la aplicación.
+   * Método principal que inicia la ejecución de la aplicación.
+   *
+   * <p>Llama al método {@code launch()} de {@link Application}, el cual gestiona el ciclo
+   * de vida de la aplicación JavaFX.</p>
+   *
+   * @param args Argumentos de línea de comandos (no utilizados en esta aplicación).
    */
 
   public static void main(String[] args) {
