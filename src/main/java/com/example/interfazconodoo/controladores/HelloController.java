@@ -28,9 +28,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Controlador para gestionar la interfaz de visualización, búsqueda, edición y eliminación de formatos de papel.
+ * Controlador para gestionar la interfaz de visualización, búsqueda,
+ * edición y eliminación de formatos de papel.
  *
- * <p>Esta clase gestiona la tabla de datos y permite realizar operaciones como la búsqueda de formatos,
+ * <p>Esta clase gestiona la tabla de datos y permite realizar
+ * operaciones como la búsqueda de formatos,
  * edición de registros existentes, eliminación y creación de nuevos formatos.</p>
  *
  * @author Oscar Abellan
@@ -174,7 +176,7 @@ public class HelloController {
    * Elimina el formato seleccionado tras confirmar la acción con una alerta.
    *
    * @param actionEvent Evento que dispara la acción.
-   * @throws IOException, SQLException Si ocurre un error durante la eliminación.
+   * @throws IOException SQLException Si ocurre un error durante la eliminación.
    */
 
   @FXML
