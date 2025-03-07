@@ -14,10 +14,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * Clase para gestionar el funcionamiento de la interfaz de editar y crear formatos.
+ * Controlador para gestionar la interfaz gráfica de creación y edición de formatos.
+ *
+ * <p>Esta clase permite cargar, modificar y almacenar información sobre formatos de papel,
+ * gestionando los datos ingresados por el usuario y validando
+ * la información antes de guardarla.</p>
+ *
+ * <p>Incluye bindings bidireccionales entre los campos de la interfaz y las propiedades del objeto
+ * {@link Paperformat}, asegurando la sincronización de datos en tiempo real.</p>
  *
  * @author Oscar Abellan
- * @version 1.0
+ * @version 1.1
  */
 
 public class FormatoController {
@@ -45,7 +52,9 @@ public class FormatoController {
   private Button btcrear;
 
   /**
-   * Insertamos el nuevo formato o el modificado.
+   * Establece un nuevo formato de papel para su edición o visualización.
+   *
+   * @param paperformat El objeto {@link Paperformat} que contiene los datos del formato.
    */
 
   public void setFormatoNuevo(Paperformat paperformat) {
@@ -54,9 +63,10 @@ public class FormatoController {
   }
 
   /**
-   * Cargamos los datos del formato.
+   * Carga los datos del formato seleccionado en los campos de la interfaz.
    *
-   * <p>Enlazamos los campos con con los campos de texto de la interfaz usando los binding.</p>
+   * <p>Asigna los valores correspondientes y establece bindings bidireccionales entre
+   * las propiedades del objeto {@link Paperformat} y los campos de texto.</p>
    */
 
   private void cargarDatos() {
@@ -83,12 +93,14 @@ public class FormatoController {
   }
 
   /**
-   * Binding reactivo para desactivar el botón `btCrear` hasta que todos los campos sean válidos.
+   * Inicializa el controlador y configura la validación de los campos de entrada.
+   *
+   * <p>Desactiva el botón de creación hasta que todos los campos obligatorios tengan valores.</p>
    */
 
   @FXML
   public void initialize() {
-    // Binding reactivo para desactivar el botón `btCrear` hasta que todos los campos sean válidos
+
     BooleanBinding camposIncompletos = textoname.textProperty().isEmpty()
         .or(textoformat.textProperty().isEmpty())
         .or(textorientation.textProperty().isEmpty())
@@ -101,20 +113,25 @@ public class FormatoController {
   }
 
   /**
-   * Creamos un elemento nuevo en la tabla de "report_paperformat" o editamos un elemento ya crado.
+   * Guarda un nuevo formato o actualiza uno existente en la base de datos.
    *
-   * <p>Tambien controlamos el problema de un formato inadecuadoi de un double.</p>
+   * <p>Si el objeto {@link Paperformat} no tiene un ID asignado, se creará un nuevo registro.
+   * En caso contrario, se actualizará el registro existente. Se maneja la validación de los
+   * valores ingresados para evitar errores de formato.</p>
+   *
+   * @param actionEvent Evento de la interfaz que dispara la acción.
+   * @throws SQLException Si ocurre un error durante la operación en la base de datos.
    */
 
   @FXML
   public void onBtCrear(ActionEvent actionEvent) throws SQLException {
 
-    // Verificar si el objeto formatoinicial está correctamente inicializado
+
     if (formatoinicial == null) {
       formatoinicial = new Paperformat();  // Inicializar si es null
     }
 
-    // Asignar valores a formatoinicial si es nuevo o si es un formato existente
+
     String name = textoname.getText();
     String formato = textoformat.getText();
     String orientation = textorientation.getText();
@@ -123,7 +140,7 @@ public class FormatoController {
     Double margenL = parseDouble(marginl.getText());
     Double margenR = parseDouble(marginr.getText());
 
-    // Si formatoinicial ya está inicializado, actualizamos sus propiedades
+
     formatoinicial.setName(name);
     formatoinicial.setFormat(formato);
     formatoinicial.setOrientation(orientation);
@@ -132,29 +149,37 @@ public class FormatoController {
     formatoinicial.setMarginLeft(margenL);
     formatoinicial.setMarginRight(margenR);
 
-    // Crear o editar el formato en la base de datos
-    if (formatoinicial.getId() == 0) {  // Si el ID es 0, significa que es un formato nuevo
+
+    if (formatoinicial.getId() == 0) {
       Paperformatdao.crearFormato(formatoinicial);
     } else {
       Paperformatdao.editarFormato(formatoinicial);
     }
-    // Cerrar la ventana
+
     Node source = (Node) actionEvent.getSource();
     Stage stage = (Stage) source.getScene().getWindow();
     stage.close();
   }
 
-  // Metodo para evitar la excepción si el valor numerico no es valido.
+  /**
+   * Convierte un texto en un número decimal, manejando posibles errores de formato.
+   *
+   * @param text Texto a convertir.
+   * @return El valor numérico si es válido, o 0.0 en caso de error.
+   */
+
   private Double parseDouble(String text) {
     try {
       return Double.parseDouble(text);
     } catch (NumberFormatException e) {
-      return 0.0;  // Retornar un valor por defecto en caso de error
+      return 0.0;
     }
   }
 
   /**
-   * Cerramos la ventana.
+   * Cierra la ventana actual.
+   *
+   * @param actionEvent Evento que dispara el cierre de la ventana.
    */
 
   @javafx.fxml.FXML

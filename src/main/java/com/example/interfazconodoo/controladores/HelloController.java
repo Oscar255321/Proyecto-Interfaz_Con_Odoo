@@ -28,10 +28,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Clase para gestionar el funcionamiento de la interfaz.
+ * Controlador para gestionar la interfaz de visualización, búsqueda, edición y eliminación de formatos de papel.
+ *
+ * <p>Esta clase gestiona la tabla de datos y permite realizar operaciones como la búsqueda de formatos,
+ * edición de registros existentes, eliminación y creación de nuevos formatos.</p>
  *
  * @author Oscar Abellan
- * @version 1.0
+ * @version 1.1
  */
 
 public class HelloController {
@@ -69,12 +72,13 @@ public class HelloController {
 
 
   /**
-   * Asignar valores de celda para cada columna, usando los nombres de propiedad de Paperformat.
+   * Inicializa la tabla de datos.
    *
    * <p>Binding reactivo para desactivar btEliminar y btEditar si no hay selección.</p>
    *
    * <p>Detectar cambios en el campo de búsqueda y aplicar el filtro reactivo.</p>
    */
+
 
   public void initialize() {
 
@@ -100,8 +104,9 @@ public class HelloController {
   }
 
   /**
-   * Cargamos los datos al clicar el boton vacio y cuando introducimos un texto nos busca el formato
-   * que queremos por su nombre.
+   * Realiza una búsqueda de formatos por nombre y actualiza la tabla con los resultados.
+   *
+   * @param actionEvent Evento que dispara la búsqueda.
    */
 
   @FXML
@@ -126,7 +131,10 @@ public class HelloController {
   }
 
   /**
-   * Cargamos una nueva interfaz para editar un campo de la tabla.
+   * Abre la ventana de edición de un formato seleccionado.
+   *
+   * @param actionEvent Evento que dispara la acción.
+   * @throws IOException Si hay un error al cargar la interfaz.
    */
 
   @FXML
@@ -163,8 +171,10 @@ public class HelloController {
   }
 
   /**
-   * Al seleccionar un formato lo eliminamos con este metodo, mostrando una alerta para asegurarnos
-   * de que queremos borrarlo. Y al eliminar nos muestra la tabla sin ese elemento.
+   * Elimina el formato seleccionado tras confirmar la acción con una alerta.
+   *
+   * @param actionEvent Evento que dispara la acción.
+   * @throws IOException, SQLException Si ocurre un error durante la eliminación.
    */
 
   @FXML
@@ -189,8 +199,10 @@ public class HelloController {
   }
 
   /**
-   * Cargamos una nueva interfaz para crear un campo de la tabla. Que serai la misma interfaz que
-   * para editar.
+   * Abre la ventana para crear un nuevo formato.
+   *
+   * @param actionEvent Evento que dispara la acción.
+   * @throws IOException Si hay un error al cargar la interfaz.
    */
 
   @FXML
