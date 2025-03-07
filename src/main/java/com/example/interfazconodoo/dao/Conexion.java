@@ -7,8 +7,11 @@ import java.sql.SQLException;
 /**
  * Clase para gestionar la conexión con la base de datos PostgreSQL.
  *
+ * <p>Proporciona un método estático para obtener una conexión
+ * activa a la base de datos, asegurando que se inicialice solo una vez.</p>
+ *
  * @author Oscar Abellan
- * @version 1.0
+ * @version 1.1
  */
 
 public class Conexion {
@@ -20,10 +23,10 @@ public class Conexion {
   public static Connection connection = null;
 
   /**
-   * Obtiene la conexión a la base de datos.
+   * Obtiene la conexión a la base de datos PostgreSQL.
    *
-   * <p>Si la conexión aún no ha sido creada, este método la inicializa. En caso
-   * de fallo, lanza una excepción en tiempo de ejecución.</p>
+   * <p>Si la conexión aún no ha sido creada, este método la inicializa.
+   * En caso de fallo, lanza una excepción en tiempo de ejecución.</p>
    *
    * @return La conexión activa a la base de datos.
    * @throws RuntimeException Si ocurre un error al intentar conectar a la base de datos.

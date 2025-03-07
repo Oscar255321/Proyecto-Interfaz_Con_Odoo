@@ -13,19 +13,20 @@ import javafx.scene.control.Alert;
 /**
  * Clase para gestionar la comunicación con la base de datos PostgreSQL.
  *
- * <p>Aqui tenemos los metodos que usamos para obtener
- * los datos que necesitamos de la base de datos.</p>
+ * <p>Proporciona métodos para realizar operaciones CRUD en la tabla "report_paperformat".</p>
  *
  * @author Oscar Abellan
- * @version 1.0
+ * @version 1.1
  */
 
 public class Paperformatdao {
 
   /**
-   * Obtiene los formatos que se encuentran en la base de datos.
+   * Obtiene los formatos almacenados en la base de datos que coincidan con el nombre proporcionado.
    *
-   * @return Los datos de la tabla "report_paperformat" de la base de datos.
+   * @param nombre Nombre parcial o completo del formato a buscar.
+   * @return Lista de objetos {@link Paperformat} que coinciden con el criterio de búsqueda.
+   * @throws SQLException Si ocurre un error al ejecutar la consulta.
    */
 
   public static List<Paperformat> obtenerFormatos(String nombre) throws SQLException {
@@ -56,10 +57,10 @@ public class Paperformatdao {
   }
 
   /**
-   * Creamos un formato nuevo en la base de datos.
+   * Inserta un nuevo formato en la base de datos.
    *
-   * <p>Si aun no ha sido creado este formnato, este método creara el formato.
-   * Si el formato ya ha sido creado saltara una excepción en tiempo de ejecución.</p>
+   * @param formato Objeto {@link Paperformat} a insertar.
+   * @throws SQLException Si ocurre un error durante la inserción.
    */
 
   public static void crearFormato(Paperformat formato) throws SQLException {
@@ -88,10 +89,10 @@ public class Paperformatdao {
   }
 
   /**
-   * Elimina un formato ya existente en la base de datos.
+   * Elimina un formato de la base de datos según su ID.
    *
-   * <p>Eliminaremos el formato que queramos en función de su nombre. Si el formato
-   * no fuera existente nos saltaria una excepción en tiempo de ejecución.</p>
+   * @param formato Objeto {@link Paperformat} que se eliminará.
+   * @throws SQLException Si ocurre un error durante la eliminación.
    */
 
   public static void eliminarFormato(Paperformat formato) throws SQLException {
@@ -108,10 +109,10 @@ public class Paperformatdao {
   }
 
   /**
-   * Editar un formato de la base de datos.
+   * Actualiza un formato existente en la base de datos.
    *
-   * <p>Modificamos todos los campos de un elemento de la tabla. Si el id
-   * es 0 saltara un error en tiempo de ejecución.</p>
+   * @param formato Objeto {@link Paperformat} con los datos actualizados.
+   * @throws SQLException Si ocurre un error durante la actualización.
    */
 
   public static void editarFormato(Paperformat formato) throws SQLException {
@@ -129,7 +130,7 @@ public class Paperformatdao {
 
       statement.setString(1, formato.getName());
       statement.setString(2, formato.getFormat());
-      statement.setString(3, formato.getOrientation()); // Cambiado a getOrientation()
+      statement.setString(3, formato.getOrientation());
       statement.setDouble(4, formato.getMarginTop());
       statement.setDouble(5, formato.getMarginBottom());
       statement.setDouble(6, formato.getMarginLeft());
@@ -137,7 +138,7 @@ public class Paperformatdao {
       statement.setInt(8, formato.getId());
       statement.executeUpdate();
 
-      Alert alert = new Alert(Alert.AlertType.INFORMATION); // Cambiado a INFORMATION
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setTitle("Confirmación");
       alert.setHeaderText(null);
       alert.setContentText("El formato ha sido editado correctamente.");
@@ -145,7 +146,7 @@ public class Paperformatdao {
 
     } catch (SQLException e) {
       System.err.println("Error al editar el formato");
-      e.printStackTrace(); // Muestra detalles de la excepción
+      e.printStackTrace();
     }
   }
 }
