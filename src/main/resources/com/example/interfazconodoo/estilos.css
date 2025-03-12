@@ -20,6 +20,17 @@
     -fx-padding: 10px;
 }
 
+.button_informe{
+
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 10px;
+  -fx-pref-width: 250px;         /* Ancho del boton*/
+  -fx-pref-height: 25px;        /*Alto del boton*/
+  -fx-font-family: Arial;       /*Tipo de letra*/
+  -fx-font-weight: bold;
+  -fx-padding: 10px;
+}
+
 .btCancelar{
 
     -fx-background-color: #d16767;
