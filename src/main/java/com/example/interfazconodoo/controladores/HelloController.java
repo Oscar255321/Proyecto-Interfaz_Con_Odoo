@@ -2,6 +2,7 @@
 package com.example.interfazconodoo.controladores;
 
 import com.example.interfazconodoo.HelloApplication;
+import com.example.interfazconodoo.dao.Informedao;
 import com.example.interfazconodoo.dao.Paperformatdao;
 import com.example.interfazconodoo.modelos.Paperformat;
 import java.io.IOException;
@@ -26,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  * Controlador para gestionar la interfaz de visualización, búsqueda,
@@ -226,4 +228,16 @@ public class HelloController {
     stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
     stage.show();
   }
+
+  @FXML
+  public void onImprimirInformeClick(ActionEvent actionEvent) {
+
+    try {
+      new Informedao().mostrarInforme();
+    } catch (ClassNotFoundException | JRException | SQLException e1) {
+      e1.printStackTrace();
+    }
+  }
+
+
 }

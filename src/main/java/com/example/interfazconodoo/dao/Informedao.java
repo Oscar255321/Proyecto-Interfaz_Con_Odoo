@@ -18,11 +18,11 @@ public class Informedao extends JFrame {
 
   private static final long serialVersionUID = 1L;
 
-  public void mostrarFormulario() throws JRException, ClassNotFoundException, SQLException {
+  public void mostrarInforme() throws JRException, ClassNotFoundException, SQLException {
 
     Connection conexion = Conexion.getConnection();
 
-    String reportSrcFile = "";
+    String reportSrcFile = "src/main/resources/com/example/interfazconodoo/informes/PaperFormat_A4_New.jrxml";
 
     JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
 
@@ -39,13 +39,5 @@ public class Informedao extends JFrame {
     System.out.println("Informe generado correctamente!");
   }
 
-  public static void main(String[] args) {
-    try {
-      new Informedao().mostrarFormulario();
-    } catch (JRException | ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
-    }
-  }
 }
 
-}
