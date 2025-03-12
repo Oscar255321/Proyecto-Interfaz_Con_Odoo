@@ -68,6 +68,8 @@ public class HelloController {
   @FXML
   private Button btCrear;
   @FXML
+  private Button btinforme;
+  @FXML
   private TextField textobuscar;
 
 
