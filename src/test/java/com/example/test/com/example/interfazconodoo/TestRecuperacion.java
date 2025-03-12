@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.interfazconodoo;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,10 +14,12 @@ import org.testfx.framework.junit5.Start;
 import org.testfx.matcher.base.WindowMatchers;
 
 /**
- * Author: Usuario Date: 11/03/2025 Description:
+ * Author: Usuario
+ * Date: 12/03/2025
+ * Description: 
  */
 @ExtendWith(ApplicationExtension.class)
-class helloApplicationTestRecuperacion {
+class TestRecuperacion {
 
   Pane mainroot;
   Stage mainstage;
@@ -122,4 +124,3 @@ class helloApplicationTestRecuperacion {
     FxAssert.verifyThat(robot.window("Crear Formato"), WindowMatchers.isNotShowing());
   }
 }
-
