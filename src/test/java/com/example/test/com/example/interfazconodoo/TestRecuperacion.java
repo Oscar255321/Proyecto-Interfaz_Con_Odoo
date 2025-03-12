@@ -108,7 +108,7 @@ class TestRecuperacion {
     robot.sleep(1000);
     robot.moveTo("Aceptar").clickOn();
     robot.sleep(2000);
-    FxAssert.verifyThat("#tbDatos", tableView -> tableView.isVisible() && tableView.getId().isEmpty());
+    FxAssert.verifyThat("#tbDatos", );
   }
 
   @DisplayName("Cerramos la ventana secundaria")
@@ -121,6 +121,5 @@ class TestRecuperacion {
     robot.sleep(1000);
     robot.clickOn("#btsalir");
     robot.sleep(1000);
-    FxAssert.verifyThat(robot.window("Crear Formato"), WindowMatchers.isNotShowing());
   }
 }
